@@ -4,18 +4,14 @@ var ctx = c.getContext("2d");
 var horiz = 50;
 var vert = 50;
 
-var old_door = 'north';
+var old_door = 3;
 
 $('button').click(function(){
 	ctx.clearRect(0, 0, c.width, c.height);
-	var room = new Room();
+	var room = new Room(old_door);
 	console.log(room.doors);
 	drawGrid();
 	drawDoors(room);
-});
-
-$('#north').click(function(){
-
 });
 
 function drawGrid() {
@@ -27,17 +23,18 @@ function drawGrid() {
 }
 
 function drawDoors(room) {
+	door_num = room.door_num;
 	doors = room.doors;
-	if (doors >= 1){
+	if (doors[0]){
 		ctx.fillRect(200, 0, 100, 50);
 	}
-	if (doors >= 2){
+	if (doors[1]){
 		ctx.fillRect(0, 200, 50, 100);
 	}
-	if (doors >= 3){
+	if (doors[2]){
 		ctx.fillRect(450, 200, 50, 100);
 	}
-	if (doors >= 4){
+	if (doors[3]){
 		ctx.fillRect(200, 450, 100, 50);
 	}
 }
