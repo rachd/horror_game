@@ -4,6 +4,8 @@ var ctx = c.getContext("2d");
 var horiz = 50;
 var vert = 50;
 
+var old_door = 'north';
+
 $('button').click(function(){
 	ctx.clearRect(0, 0, c.width, c.height);
 	var room = new Room();
@@ -46,16 +48,16 @@ function getPosition(event){
 	var x = event.x - c.offsetLeft;
 	var y = event.y - c.offsetTop;
 	console.log(x + " " + y);
-	if(x >= 500 && x <= 550 && y >= 250 && y <= 350){
-		console.log('right button clicked');
+	if(x >= 200 && x <= 300 && y >= 0 && y <= 50){
+		old_door = "north";
 	}
-	if(x >= 250 && x <= 350 && y >= 50 && y <= 100){
-		console.log('top button clicked');
+	if(x >= 0 && x <= 50 && y >= 200 && y <= 300){
+		old_door = 'west';
 	}
-	if(x >= 50 && x <= 100 && y >= 250 && y <= 350){
-		console.log('left button clicked');
+	if(x >= 450 && x <= 500 && y >= 200 && y <= 300){
+		old_door = 'east';
 	}
-	if(x >= 250 && x <= 350 && y >= 425 && y <= 475){
-		console.log('bottom button clicked');
+	if(x >= 200 && x <= 300 && y >= 450 && y <= 500){
+		old_door = 'south';
 	}
 }
