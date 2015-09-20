@@ -6,13 +6,13 @@ var vert = 50;
 
 var old_door = 3;
 
-$('button').click(function(){
+function newRoom() {
 	ctx.clearRect(0, 0, c.width, c.height);
 	var room = new Room(old_door);
 	console.log(room.doors);
 	drawGrid();
 	drawDoors(room);
-});
+};
 
 function drawGrid() {
 	for (i = 0; i < 10; i++){
@@ -46,15 +46,21 @@ function getPosition(event){
 	var y = event.y - c.offsetTop;
 	console.log(x + " " + y);
 	if(x >= 200 && x <= 300 && y >= 0 && y <= 50){
-		old_door = "north";
+		old_door = 3;
+		newRoom();
 	}
 	if(x >= 0 && x <= 50 && y >= 200 && y <= 300){
-		old_door = 'west';
+		old_door = 2;
+		newRoom();
 	}
 	if(x >= 450 && x <= 500 && y >= 200 && y <= 300){
-		old_door = 'east';
+		old_door = 1;
+		newRoom();
 	}
 	if(x >= 200 && x <= 300 && y >= 450 && y <= 500){
-		old_door = 'south';
+		old_door = 0;
+		newRoom();
 	}
 }
+
+newRoom();
