@@ -6,7 +6,7 @@ var Room = function(old_door) {
 	this.item = "sticky boots";
 }
 
-var Creature = function(name, speed, health, fire, impact, blade, arcane, water, electricity) {
+var Creature = function(name, speed, health, fire, impact, blade, arcane, electricity, water) {
 	this.square = Math.floor(Math.random()*81)+1;
 	this.name = name;
 	this.speed = speed;

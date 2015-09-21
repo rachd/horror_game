@@ -1,3 +1,8 @@
+/*
+==========
+VARIABLES
+==========
+*/
 var c = document.querySelector("#map");
 var ctx = c.getContext("2d");
 
@@ -6,12 +11,17 @@ var vert = 50;
 
 var old_door = 3;
 
+/*
+============
+DRAW BOARD
+============
+*/
 function newRoom() {
 	ctx.clearRect(0, 0, c.width, c.height);
 	var room = new Room(old_door);
-	console.log(room.doors);
 	drawGrid();
 	drawDoors(room);
+	pickCreature();
 };
 
 function drawGrid() {
@@ -39,12 +49,17 @@ function drawDoors(room) {
 	}
 }
 
+/*
+============
+MOUSE CLICK
+============
+*/
+
 c.addEventListener("mousedown", getPosition, false);
 
 function getPosition(event){
 	var x = event.x - c.offsetLeft;
 	var y = event.y - c.offsetTop;
-	console.log(x + " " + y);
 	if(x >= 200 && x <= 300 && y >= 0 && y <= 50){
 		old_door = 3;
 		newRoom();
@@ -61,6 +76,22 @@ function getPosition(event){
 		old_door = 0;
 		newRoom();
 	}
+}
+
+/*
+=================
+CREATURES
+=================
+*/
+var creature_list = [new Creature("Werewolf", 5, 10, 1, 1, 1, 0, 1, 0), new Creature("Vampire", 5, 10, 1, 1, 0, 1, 0, 0)];
+
+function pickCreature(){
+	var ind = Math.floor(Math.random() * creature_list.length);
+	$('#name').text(creature_list[ind].name);
+	$('#health').text("Health: " + creature_list[ind].health);
+	$('#speed').text("Speed: " + creature_list[ind].speed);
+	$('#immune').text("Immune to: ");
+	$('#vulnerable').text("Vulnerable to: ");
 }
 
 newRoom();
