@@ -4,6 +4,10 @@ var Room = function(old_door) {
 	this.doors[old_door] = 1;
 	this.creature = "vampire";
 	this.item = "sticky boots";
+	this.doorN = -1;
+	this.doorW = -1;
+	this.doorS = -1;
+	this.doorE = -1;
 }
 
 var Creature = function(name, speed, health, fire, impact, blade, arcane, electricity, water) {

@@ -10,6 +10,9 @@ var horiz = 50;
 var vert = 50;
 
 var old_door = 3;
+var room_num = 0;
+var room;
+var rooms = [];
 
 /*
 ============
@@ -17,8 +20,10 @@ DRAW BOARD
 ============
 */
 function newRoom() {
+	rooms.push(room);
 	ctx.clearRect(0, 0, c.width, c.height);
-	var room = new Room(old_door);
+	room = new Room(old_door);
+	room_num++;
 	drawGrid();
 	drawDoors(room);
 	pickCreature();
@@ -61,20 +66,28 @@ function getPosition(event){
 	var x = event.x - c.offsetLeft;
 	var y = event.y - c.offsetTop;
 	if(x >= 200 && x <= 300 && y >= 0 && y <= 50){
-		old_door = 3;
-		newRoom();
+		if(room.doorN != -1){
+			old_door = 3;
+			newRoom();
+		}
 	}
 	if(x >= 0 && x <= 50 && y >= 200 && y <= 300){
-		old_door = 2;
-		newRoom();
+		if(room.doorW != -1){
+			old_door = 2;
+			newRoom();
+		}
 	}
 	if(x >= 450 && x <= 500 && y >= 200 && y <= 300){
-		old_door = 1;
-		newRoom();
+		if(room.doorS != -1){
+			old_door = 1;
+			newRoom();
+		}
 	}
 	if(x >= 200 && x <= 300 && y >= 450 && y <= 500){
-		old_door = 0;
-		newRoom();
+		if(room.doorE != -1){
+			old_door = 0;
+			newRoom();
+		}
 	}
 }
 
