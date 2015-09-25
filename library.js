@@ -2,7 +2,7 @@ var Room = function() {
 	//this.door_num = Math.floor(Math.random() * 4) + 1;
 	//this.doors = this.pickDoors();
 	//this.doors[old_door] = 1;
-	this.creature = "vampire";
+	this.creature = this.pickCreature();
 	this.item = "sticky boots";
 	this.doorN = -1;
 	this.doorW = -1;
@@ -34,4 +34,21 @@ Room.prototype.pickDoors = function(){
 		doors[i] = Math.floor(Math.random()*2);
 	}
 	return doors;
+}
+
+var Werewolf = new Creature("Werewolf", 5, 10, 1, 1, 1, 0, 1, 0);
+var Vampire = new Creature("Vampire", 5, 10, 1, 1, 0, 1, 0, 0);
+var creature_list = [Werewolf, Vampire];
+
+Room.prototype.pickCreature = function(){
+	var ind = Math.floor(Math.random() * creature_list.length);
+	return creature_list[ind];
+}
+
+Room.prototype.displayCreature = function(){
+	$('#name').text(this.creature.name);
+	$('#health').text('Health: '+ this.creature.health);
+	$('#speed').text('Speed: ' + this.creature.speed);
+	$('#immune')
+	$('#vulnerable')
 }

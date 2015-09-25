@@ -23,7 +23,7 @@ function newRoom() {
 	rooms.push(room);
 	//drawGrid();
 	//drawDoors(room);
-	pickCreature();
+	room.displayCreature();
 };
 
 /*function drawGrid() {
@@ -68,6 +68,7 @@ $('#north').click(function() {
 		room_num = room.doorN;
 		room = rooms[room.doorN];
 		room.doorS = old_room;
+		room.displayCreature();
 	}
 	$('.room').text('Current Room: ' + room_num);
 });
@@ -84,6 +85,7 @@ $('#west').click(function() {
 		room_num = room.doorW;
 		room = rooms[room.doorW];
 		room.doorE = old_room;
+		room.displayCreature();
 	}
 	$('.room').text('Current Room: ' + room_num);
 });
@@ -100,6 +102,7 @@ $('#south').click(function() {
 		room_num = room.doorS;
 		room = rooms[room.doorS];
 		room.doorN = old_room;
+		room.displayCreature();
 	}
 	$('.room').text('Current Room: ' + room_num);
 });
@@ -116,60 +119,9 @@ $('#east').click(function() {
 		room_num = room.doorE;
 		room = rooms[room.doorE];
 		room.doorW = old_room;
+		room.displayCreature();
 	}
 	$('.room').text('Current Room: ' + room_num);
 });
-/*
-============
-OLD CANVAS MOUSE CLICK
-============
-*/
-
-/*c.addEventListener("mousedown", getPosition, false);
-
-function getPosition(event){
-	var x = event.x - c.offsetLeft;
-	var y = event.y - c.offsetTop;
-	if(x >= 200 && x <= 300 && y >= 0 && y <= 50){
-		if(room.doorN != -1){
-			old_door = 3;
-			newRoom();
-		}
-	}
-	if(x >= 0 && x <= 50 && y >= 200 && y <= 300){
-		if(room.doorW != -1){
-			old_door = 2;
-			newRoom();
-		}
-	}
-	if(x >= 450 && x <= 500 && y >= 200 && y <= 300){
-		if(room.doorS != -1){
-			old_door = 1;
-			newRoom();
-		}
-	}
-	if(x >= 200 && x <= 300 && y >= 450 && y <= 500){
-		if(room.doorE != -1){
-			old_door = 0;
-			newRoom();
-		}
-	}
-}
-
-/*
-=================
-CREATURES
-=================
-*/
-var creature_list = [new Creature("Werewolf", 5, 10, 1, 1, 1, 0, 1, 0), new Creature("Vampire", 5, 10, 1, 1, 0, 1, 0, 0)];
-
-function pickCreature(){
-	var ind = Math.floor(Math.random() * creature_list.length);
-	$('#name').text(creature_list[ind].name);
-	$('#health').text("Health: " + creature_list[ind].health);
-	$('#speed').text("Speed: " + creature_list[ind].speed);
-	$('#immune').text("Immune to: ");
-	$('#vulnerable').text("Vulnerable to: ");
-}
 
 newRoom();
