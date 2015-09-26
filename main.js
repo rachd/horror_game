@@ -125,3 +125,5 @@ $('#east').click(function() {
 });
 
 newRoom();
+room.creature = Portal;
+room.displayCreature();
