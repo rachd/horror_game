@@ -2,10 +2,9 @@
 ==========
 VARIABLES
 ==========
-
+*/
 var c = document.querySelector("#map");
 var ctx = c.getContext("2d");
-*/
 var room_num = 0;
 var old_room;
 var room;
@@ -18,15 +17,13 @@ DRAW BOARD
 ============
 */
 function newRoom() {
-	//ctx.clearRect(0, 0, c.width, c.height);
 	room = new Room();
 	rooms.push(room);
-	//drawGrid();
-	//drawDoors(room);
+	drawGrid();
 	room.displayCreature();
 };
 
-/*function drawGrid() {
+function drawGrid() {
 	for (i = 0; i < 10; i++){
 		for (j = 0; j < 10; j++){
 			ctx.strokeRect(50*j, 50*i, 50, 50);
@@ -35,6 +32,8 @@ function newRoom() {
 }
 
 function drawDoors(room) {
+	ctx.clearRect(0, 0, c.width, c.height);
+	drawGrid();
 	door_num = room.door_num;
 	doors = room.doors;
 	if (doors[0]){
@@ -43,14 +42,14 @@ function drawDoors(room) {
 	if (doors[1]){
 		ctx.fillRect(0, 200, 50, 100);
 	}
-	if (doors[2]){
+	if (doors[3]){
 		ctx.fillRect(450, 200, 50, 100);
 	}
-	if (doors[3]){
+	if (doors[2]){
 		ctx.fillRect(200, 450, 100, 50);
 	}
 }
-*/
+
 /*
 =============
 BUTTON CLICK
@@ -73,6 +72,7 @@ $('#north').click(function() {
 	}
 	console.log(room.doors);
 	room.displayDoors();
+	drawDoors(room);
 	$('.room').text('Current Room: ' + room_num);
 });
 
@@ -92,6 +92,7 @@ $('#west').click(function() {
 		room.displayCreature();
 	}
 	room.displayDoors();
+	drawDoors(room);
 	$('.room').text('Current Room: ' + room_num);
 });
 
@@ -111,6 +112,7 @@ $('#south').click(function() {
 		room.displayCreature();
 	}
 	room.displayDoors();
+	drawDoors(room);
 	$('.room').text('Current Room: ' + room_num);
 });
 
@@ -130,6 +132,7 @@ $('#east').click(function() {
 		room.displayCreature();
 	}
 	room.displayDoors();
+	drawDoors(room);
 	$('.room').text('Current Room: ' + room_num);
 });
 
@@ -139,3 +142,5 @@ room.creature = Portal;
 room.displayCreature();
 room.doors=[1, 1, 0, 1];
 room.displayDoors();
+drawGrid();
+drawDoors(room);

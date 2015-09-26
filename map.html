@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Horror Game Map</title>
 	<link href="http://fonts.googleapis.com/css?family=Lato:100,300" rel="stylesheet">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap.min.css">
 </head>
 <body>
 	<div class="container-fluid">
@@ -17,36 +17,38 @@
 			<h4 class="col-xs-12 room">Current Room: 0</h4>
 		</div>
 		<div class="row">
-			<div class="col-xs-12">
-				<button id="north" class="btn btn-default btn-block">Go North</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<button id="west" class="btn btn-default btn-block">Go West</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<button id="east" class="btn btn-default btn-block">Go East</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<button id="south" class="btn btn-default btn-block">Go South</button>
-			</div>
-		</div>
-		<div class="row">
 			<div class="col-md-6 col-xs-12">
-				<h4 id="name"></h4>
-				<p id="health"></p>
-				<p id="speed"></p>
-				<p id="immune"></p>
-				<p id="vulnerable"></p>
+				<div class="row">
+					<div class="col-xs-12">
+						<button id="north" class="btn btn-default btn-block">Go North</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<button id="west" class="btn btn-warning btn-block">Go West</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<button id="east" class="btn btn-success btn-block">Go East</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<button id="south" class="btn btn-info btn-block">Go South</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-xs-12">
+						<h4 id="name"></h4>
+						<p id="health"></p>
+						<p id="speed"></p>
+						<p id="immune"></p>
+						<p id="vulnerable"></p>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-7 hidden-xs hidden-sm">
+			<div class="col-md-6 hidden-xs hidden-sm">
 				<canvas id="map" width="500" height="500"></canvas>
 			</div>
 		</div>
