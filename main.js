@@ -61,15 +61,18 @@ $('#north').click(function() {
 		room.doorN = rooms.length;
 		newRoom();
 		room.doorS = room_num;
+		room.doors[2] = 1;
 		room_num = rooms.length - 1;
 	}
-		else{
+	else {
 		old_room = room_num;
 		room_num = room.doorN;
 		room = rooms[room.doorN];
 		room.doorS = old_room;
 		room.displayCreature();
 	}
+	console.log(room.doors);
+	room.displayDoors();
 	$('.room').text('Current Room: ' + room_num);
 });
 
@@ -78,15 +81,17 @@ $('#west').click(function() {
 		room.doorW = rooms.length;
 		newRoom();
 		room.doorE = room_num;
+		room.doors[3] = 1;
 		room_num = rooms.length - 1;
 	}
-		else{
+	else {
 		old_room = room_num;
 		room_num = room.doorW;
 		room = rooms[room.doorW];
 		room.doorE = old_room;
 		room.displayCreature();
 	}
+	room.displayDoors();
 	$('.room').text('Current Room: ' + room_num);
 });
 
@@ -95,15 +100,17 @@ $('#south').click(function() {
 		room.doorS = rooms.length;
 		newRoom();
 		room.doorN = room_num;
+		room.doors[0] = 1;
 		room_num = rooms.length - 1;
 	}
-		else{
+	else {
 		old_room = room_num;
 		room_num = room.doorS;
 		room = rooms[room.doorS];
 		room.doorN = old_room;
 		room.displayCreature();
 	}
+	room.displayDoors();
 	$('.room').text('Current Room: ' + room_num);
 });
 
@@ -112,18 +119,23 @@ $('#east').click(function() {
 		room.doorE = rooms.length;
 		newRoom();
 		room.doorW = room_num;
+		room.doors[1] = 1;
 		room_num = rooms.length - 1;
 	}
-		else{
+	else {
 		old_room = room_num;
 		room_num = room.doorE;
 		room = rooms[room.doorE];
 		room.doorW = old_room;
 		room.displayCreature();
 	}
+	room.displayDoors();
 	$('.room').text('Current Room: ' + room_num);
 });
 
-newRoom();
+room = new Room();
+rooms.push(room);
 room.creature = Portal;
 room.displayCreature();
+room.doors=[1, 1, 0, 1];
+room.displayDoors();

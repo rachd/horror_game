@@ -1,7 +1,6 @@
 var Room = function() {
-	//this.door_num = Math.floor(Math.random() * 4) + 1;
-	//this.doors = this.pickDoors();
-	//this.doors[old_door] = 1;
+	this.door_num = Math.floor(Math.random() * 4) + 1;
+	this.doors = this.pickDoors();
 	this.creature = this.pickCreature();
 	this.item = "sticky boots";
 	this.doorN = -1;
@@ -36,6 +35,33 @@ Room.prototype.pickDoors = function(){
 		doors[i] = Math.floor(Math.random()*2);
 	}
 	return doors;
+}
+
+Room.prototype.displayDoors = function(){
+	if(this.doors[0]===0){
+		$('#north').hide();
+	}
+	else{
+		$('#north').show();
+	}
+	if(this.doors[1]===0){
+		$('#west').hide();
+	}
+	else {
+		$('#west').show();
+	}
+	if(this.doors[2]===0){
+		$('#south').hide();
+	}
+	else{
+		$('#south').show();
+	}
+	if(this.doors[3]===0){
+		$('#east').hide();
+	}
+	else {
+		$('#east').show();
+	}
 }
 
 var Werewolf = new Creature("Werewolf", 5, 10, 1, 1, 1, 0, 1, 0, "fire, impact, blade, electricity", "arcane, water");
