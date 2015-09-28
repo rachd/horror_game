@@ -10,6 +10,8 @@ var old_room;
 var room;
 var next_room;
 var rooms = [];
+var players = parseInt(prompt('How many players?'));
+var turn = 0;
 
 /*
 ============
@@ -70,10 +72,10 @@ $('#north').click(function() {
 		room.doorS = old_room;
 		room.displayCreature();
 	}
-	console.log(room.doors);
 	room.displayDoors();
 	drawDoors(room);
 	$('.room').text('Current Room: ' + room_num);
+	updateTurn();
 });
 
 $('#west').click(function() {
@@ -94,6 +96,7 @@ $('#west').click(function() {
 	room.displayDoors();
 	drawDoors(room);
 	$('.room').text('Current Room: ' + room_num);
+	updateTurn();
 });
 
 $('#south').click(function() {
@@ -114,6 +117,7 @@ $('#south').click(function() {
 	room.displayDoors();
 	drawDoors(room);
 	$('.room').text('Current Room: ' + room_num);
+	updateTurn();
 });
 
 $('#east').click(function() {
@@ -134,6 +138,7 @@ $('#east').click(function() {
 	room.displayDoors();
 	drawDoors(room);
 	$('.room').text('Current Room: ' + room_num);
+	updateTurn();
 });
 
 /*
@@ -180,6 +185,18 @@ var timeinterval = setInterval(updateClock,1000);
 }
 
 initializeClock('clockdiv', deadline);
+
+/*
+=============
+Turn Tracker
+=============
+*/
+function updateTurn(){
+	turn = ((turn + 1) % (players));
+	console.log(players + 1);
+	$('.turn').text("Player " + turn);
+}
+
 /*
 ===================
 Create First Room

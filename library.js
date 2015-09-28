@@ -1,3 +1,8 @@
+var Player = function() {
+	this.room = 0;
+	this.items = 0;
+}
+
 var Room = function() {
 	this.door_num = Math.floor(Math.random() * 4) + 1;
 	this.doors = this.pickDoors();
