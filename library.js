@@ -1,6 +1,6 @@
 var Player = function() {
 	this.room = 0;
-	this.items = 0;
+	this.items = [];
 }
 
 var Room = function() {

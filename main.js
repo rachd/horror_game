@@ -197,6 +197,9 @@ function updateTurn(){
 	$('.turn').text("Player " + turn);
 }
 
+$('#player').click(function(){
+	updateTurn();
+});
 /*
 ===================
 Create First Room
