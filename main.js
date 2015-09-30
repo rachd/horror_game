@@ -5,13 +5,17 @@ VARIABLES
 */
 var c = document.querySelector("#map");
 var ctx = c.getContext("2d");
+
 var room_num = 0;
 var old_room;
 var room;
 var next_room;
 var rooms = [];
-var players = parseInt(prompt('How many players?'));
+
+var num_players = parseInt(prompt('How many players?'));
 var turn = 0;
+var players = [];
+var player;
 
 /*
 ============
@@ -75,7 +79,6 @@ $('#north').click(function() {
 	room.displayDoors();
 	drawDoors(room);
 	$('.room').text('Current Room: ' + room_num);
-	updateTurn();
 });
 
 $('#west').click(function() {
@@ -96,7 +99,6 @@ $('#west').click(function() {
 	room.displayDoors();
 	drawDoors(room);
 	$('.room').text('Current Room: ' + room_num);
-	updateTurn();
 });
 
 $('#south').click(function() {
@@ -117,7 +119,6 @@ $('#south').click(function() {
 	room.displayDoors();
 	drawDoors(room);
 	$('.room').text('Current Room: ' + room_num);
-	updateTurn();
 });
 
 $('#east').click(function() {
@@ -138,7 +139,6 @@ $('#east').click(function() {
 	room.displayDoors();
 	drawDoors(room);
 	$('.room').text('Current Room: ' + room_num);
-	updateTurn();
 });
 
 /*
@@ -192,14 +192,31 @@ Turn Tracker
 =============
 */
 function updateTurn(){
-	turn = ((turn + 1) % (players));
-	console.log(players + 1);
+	storeRoom(player, room);
+	turn = ((turn + 1) % (num_players));
+	console.log(turn);
 	$('.turn').text("Player " + turn);
+	player = players[turn];
+	console.log(players[turn]);
+	switchPlayer(room);
 }
 
 $('#player').click(function(){
-	updateTurn();
+	updateTurn(player, room);
 });
+
+function switchPlayer(){
+	room = player.room;
+	room.displayCreature();
+	room.displayDoors();
+	drawDoors(room);
+	$('.room').text('Current Room: ' + room_num);
+}
+
+function storeRoom(){
+	player.room = room;
+}
+
 /*
 ===================
 Create First Room
@@ -213,3 +230,13 @@ room.doors=[1, 1, 0, 1];
 room.displayDoors();
 drawGrid();
 drawDoors(room);
+
+/*
+===================
+Initialize Players
+===================
+*/
+for (var i = 0; i < num_players; i++){
+	players[i] = new Player(room);
+}
+player = players[0];
