@@ -27,6 +27,7 @@ function newRoom() {
 	rooms.push(room);
 	drawGrid();
 	room.displayCreature();
+	room.displayItem();
 };
 
 function drawGrid() {
@@ -95,6 +96,7 @@ $('#west').click(function() {
 		room = rooms[room.doorW];
 		room.doorE = old_room;
 		room.displayCreature();
+		room.displayItem();
 	}
 	room.displayDoors();
 	drawDoors(room);
@@ -115,6 +117,7 @@ $('#south').click(function() {
 		room = rooms[room.doorS];
 		room.doorN = old_room;
 		room.displayCreature();
+		room.displayItem();
 	}
 	room.displayDoors();
 	drawDoors(room);
@@ -135,6 +138,7 @@ $('#east').click(function() {
 		room = rooms[room.doorE];
 		room.doorW = old_room;
 		room.displayCreature();
+		room.displayItem();
 	}
 	room.displayDoors();
 	drawDoors(room);
@@ -208,6 +212,7 @@ $('#player').click(function(){
 function switchPlayer(){
 	room = player.room;
 	room.displayCreature();
+	room.displayItem();
 	room.displayDoors();
 	drawDoors(room);
 	$('.room').text('Current Room: ' + room_num);
@@ -226,6 +231,7 @@ room = new Room();
 rooms.push(room);
 room.creature = Portal;
 room.displayCreature();
+room.displayItem();
 room.doors=[1, 1, 0, 1];
 room.displayDoors();
 drawGrid();

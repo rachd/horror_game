@@ -7,7 +7,7 @@ var Room = function() {
 	this.door_num = Math.floor(Math.random() * 4) + 1;
 	this.doors = this.pickDoors();
 	this.creature = this.pickCreature();
-	this.item = "sticky boots";
+	this.item = this.pickItem();
 	this.doorN = -1;
 	this.doorW = -1;
 	this.doorS = -1;
@@ -27,6 +27,10 @@ var Creature = function(name, speed, health, fire, impact, blade, arcane, electr
 	this.electricity = electricity;
 	this.vulnerabilities = vul;
 	this.immunities = imm;
+}
+
+var Item = function(name){
+	this.name = name;
 }
 
 var Door = function(x, y, width, height) {
@@ -121,4 +125,30 @@ Room.prototype.displayCreature = function(){
 	$('#speed').text('Speed: ' + this.creature.speed);
 	$('#immune').text('Immunities: ' + this.creature.immunities);
 	$('#vulnerable').text('Vulnerabilities: ' + this.creature.vulnerabilities);
+}
+
+var stick = new Item("stick");
+var rock = new Item("rock");
+var rubber_band = new Item("rubber band");
+var gasolene = new Item("can of gasolene");
+var rag = new Item("rag");
+var matches = new Item("matches");
+var tape = new Item("duct tape");
+var wire = new Item("coil of wire");
+var wax = new Item("wax");
+var cotton = new Item("cotton");
+var boots = new Item("sticky boots");
+var skates = new Item("rollerskates");
+var cookie_cutter = new Item("cookie cutter");
+
+var item_list = [stick, rock, rubber_band, gasolene, rag,
+matches, tape, wire, wax, cotton, boots, skates, cookie_cutter];
+
+Room.prototype.displayItem = function(){
+	$('#item').text(this.item.name);
+}
+
+Room.prototype.pickItem = function(){
+	var dex = Math.floor(Math.random() * item_list.length);
+	return item_list[dex];
 }
