@@ -12,7 +12,7 @@ var room;
 var next_room;
 var rooms = [];
 
-var num_players = parseInt(prompt('How many players?'));
+var num_players;
 var turn = 0;
 var players = [];
 var player;
@@ -238,11 +238,17 @@ drawGrid();
 drawDoors(room);
 
 /*
-===================
-Initialize Players
-===================
+==========
+Read form
+==========
 */
-for (var i = 0; i < num_players; i++){
-	players[i] = new Player(room);
-}
-player = players[0];
+$('#person').click(function(){
+	num_players = $('#people').val();
+	$('#person').hide();
+	$('form').hide();
+	//Initialize Players
+	for (var i = 0; i < num_players; i++){
+		players[i] = new Player(room);
+	}
+	player = players[0];
+})
