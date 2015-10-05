@@ -150,7 +150,7 @@ $('#east').click(function() {
 Countdown Clock
 =================
 */
-var timeInMinutes = 60;
+var timeInMinutes = 1;
 var currentTime = Date.parse(new Date());
 var deadline = new Date(currentTime + timeInMinutes*60*1000);
 
@@ -181,6 +181,8 @@ function initializeClock(id, endtime){
     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
     if(t.total<=0){
       clearInterval(timeinterval);
+      $('.container-fluid').hide();
+      $('h1').removeClass('hidden');
     }
 }
 
@@ -189,6 +191,10 @@ var timeinterval = setInterval(updateClock,1000);
 }
 
 initializeClock('clockdiv', deadline);
+
+// if getTimeRemaining(endtime){
+	
+// }
 
 /*
 =============
