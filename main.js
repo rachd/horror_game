@@ -150,7 +150,7 @@ $('#east').click(function() {
 Countdown Clock
 =================
 */
-var timeInMinutes = 1;
+var timeInMinutes = 60;
 var currentTime = Date.parse(new Date());
 var deadline = new Date(currentTime + timeInMinutes*60*1000);
 
