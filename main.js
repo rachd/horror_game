@@ -62,6 +62,7 @@ function drawDoors(room) {
 BUTTON CLICK
 =============
 */
+
 $('#north').click(function() {
 	if(room.doorN === -1){
 		room.doorN = rooms.length;
@@ -147,6 +148,32 @@ $('#east').click(function() {
 
 /*
 =================
+Canvas Clicks
+=================
+*/
+
+c.addEventListener("mousedown", getPosition, false);
+
+function getPosition(event){
+	var x = event.x - $('#map').offset().left;
+	var y = event.y - $('#map').offset().top;
+	console.log(x + " " + y);
+	if(x >= 450 && x <= 500 && y >= 200 && y <= 300 && room.doors[3] === 1){
+		$('#east').click();
+	}
+	if(x >= 200 && x <= 300 && y >= 0 && y <= 50 && room.doors[0] === 1){
+		$('#north').click();
+	}
+	if(x >= 0 && x <= 50 && y >= 200 && y <= 300 && room.doors[1] === 1){
+		$('#west').click();
+	}
+	if(x >= 200 && x <= 300 && y >= 450 && y <= 500 && room.doors[2] === 1){
+		$('#south').click();
+	}
+}
+
+/*
+=================
 Countdown Clock
 =================
 */
@@ -191,10 +218,6 @@ var timeinterval = setInterval(updateClock,1000);
 }
 
 initializeClock('clockdiv', deadline);
-
-// if getTimeRemaining(endtime){
-	
-// }
 
 /*
 =============
