@@ -27,6 +27,8 @@ var Creature = function(name, speed, health, fire, impact, blade, arcane, electr
 	this.electricity = electricity;
 	this.vulnerabilities = vul;
 	this.immunities = imm;
+	this.row = Math.floor(Math.random()*6);
+	this.col = Math.floor(Math.random()*6);
 }
 
 var Item = function(name){
@@ -117,14 +119,6 @@ Child, Eddy_Paperhands];
 Room.prototype.pickCreature = function(){
 	var ind = Math.floor(Math.random() * creature_list.length);
 	return creature_list[ind];
-}
-
-Room.prototype.displayCreature = function(){
-	$('#name').text(this.creature.name);
-	$('#health').text('Health: '+ this.creature.health);
-	$('#speed').text('Speed: ' + this.creature.speed);
-	$('#immune').text('Immunities: ' + this.creature.immunities);
-	$('#vulnerable').text('Vulnerabilities: ' + this.creature.vulnerabilities);
 }
 
 var stick = new Item("stick");

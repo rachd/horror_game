@@ -18,18 +18,23 @@ var players = [];
 var player;
 
 /*
-============
-DRAW BOARD
-============
+==========
+New Room
+==========
 */
 function newRoom() {
 	room = new Room();
 	rooms.push(room);
 	drawGrid();
-	room.displayCreature();
+	displayCreature(room);
 	room.displayItem();
 };
 
+/*
+========
+Canvas
+========
+*/
 function drawGrid() {
 	for (i = 0; i < 10; i++){
 		for (j = 0; j < 10; j++){
@@ -39,8 +44,7 @@ function drawGrid() {
 }
 
 function drawDoors(room) {
-	ctx.clearRect(0, 0, c.width, c.height);
-	drawGrid();
+	ctx.fillStyle = '#000';
 	door_num = room.door_num;
 	doors = room.doors;
 	if (doors[0]){
@@ -55,6 +59,18 @@ function drawDoors(room) {
 	if (doors[2]){
 		ctx.fillRect(200, 450, 100, 50);
 	}
+}
+
+function drawCreature(room){
+	ctx.fillStyle = '#F00';
+	ctx.fillRect(100 + (50*room.creature.col), 100 + (50*room.creature.row), 50, 50);
+}
+
+function draw(room) {
+	ctx.clearRect(0, 0, c.width, c.height);
+	drawGrid();
+	drawDoors(room);
+	drawCreature(room);
 }
 
 /*
@@ -76,10 +92,10 @@ $('#north').click(function() {
 		room_num = room.doorN;
 		room = rooms[room.doorN];
 		room.doorS = old_room;
-		room.displayCreature();
+		displayCreature(room);
 	}
 	room.displayDoors();
-	drawDoors(room);
+	draw(room);
 	$('.room').text('Current Room: ' + room_num);
 });
 
@@ -96,11 +112,11 @@ $('#west').click(function() {
 		room_num = room.doorW;
 		room = rooms[room.doorW];
 		room.doorE = old_room;
-		room.displayCreature();
+		displayCreature(room);
 		room.displayItem();
 	}
 	room.displayDoors();
-	drawDoors(room);
+	draw(room);
 	$('.room').text('Current Room: ' + room_num);
 });
 
@@ -117,11 +133,11 @@ $('#south').click(function() {
 		room_num = room.doorS;
 		room = rooms[room.doorS];
 		room.doorN = old_room;
-		room.displayCreature();
+		displayCreature(room);
 		room.displayItem();
 	}
 	room.displayDoors();
-	drawDoors(room);
+	draw(room);
 	$('.room').text('Current Room: ' + room_num);
 });
 
@@ -138,11 +154,11 @@ $('#east').click(function() {
 		room_num = room.doorE;
 		room = rooms[room.doorE];
 		room.doorW = old_room;
-		room.displayCreature();
+		displayCreature(room);
 		room.displayItem();
 	}
 	room.displayDoors();
-	drawDoors(room);
+	draw(room);
 	$('.room').text('Current Room: ' + room_num);
 });
 
@@ -170,6 +186,19 @@ function getPosition(event){
 	if(x >= 200 && x <= 300 && y >= 450 && y <= 500 && room.doors[2] === 1){
 		$('#south').click();
 	}
+}
+
+/*
+=================
+Display Creature
+=================
+*/
+function displayCreature(room){
+	$('#name').text(room.creature.name);
+	$('#health').text('Health: '+ room.creature.health);
+	$('#speed').text('Speed: ' + room.creature.speed);
+	$('#immune').text('Immunities: ' + room.creature.immunities);
+	$('#vulnerable').text('Vulnerabilities: ' + room.creature.vulnerabilities);
 }
 
 /*
@@ -240,7 +269,7 @@ $('#player').click(function(){
 
 function switchPlayer(){
 	room = player.room;
-	room.displayCreature();
+	displayCreature(room);
 	room.displayItem();
 	room.displayDoors();
 	drawDoors(room);
@@ -259,12 +288,12 @@ Create First Room
 room = new Room();
 rooms.push(room);
 room.creature = Portal;
-room.displayCreature();
 room.displayItem();
 room.doors=[1, 1, 0, 1];
 room.displayDoors();
 drawGrid();
 drawDoors(room);
+displayCreature(room);
 
 /*
 ==========
