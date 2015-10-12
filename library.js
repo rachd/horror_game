@@ -1,5 +1,5 @@
 var Player = function(room) {
-	this.room= room;
+	this.room = room;
 	this.items = [];
 }
 

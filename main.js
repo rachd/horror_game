@@ -173,7 +173,6 @@ c.addEventListener("mousedown", getPosition, false);
 function getPosition(event){
 	var x = event.x - $('#map').offset().left;
 	var y = event.y - $('#map').offset().top;
-	console.log(x + " " + y);
 	if(x >= 450 && x <= 500 && y >= 200 && y <= 300 && room.doors[3] === 1){
 		$('#east').click();
 	}
@@ -256,10 +255,8 @@ Turn Tracker
 function updateTurn(){
 	storeRoom(player, room);
 	turn = ((turn + 1) % (num_players));
-	console.log(turn);
 	$('.turn').text("Player " + turn);
 	player = players[turn];
-	console.log(players[turn]);
 	switchPlayer(room);
 }
 
@@ -272,7 +269,7 @@ function switchPlayer(){
 	displayCreature(room);
 	room.displayItem();
 	room.displayDoors();
-	drawDoors(room);
+	draw(room);
 	$('.room').text('Current Room: ' + room_num);
 }
 
@@ -291,8 +288,7 @@ room.creature = Portal;
 room.displayItem();
 room.doors=[1, 1, 0, 1];
 room.displayDoors();
-drawGrid();
-drawDoors(room);
+draw(room);
 displayCreature(room);
 
 /*
