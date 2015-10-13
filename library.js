@@ -33,6 +33,8 @@ var Creature = function(name, speed, health, fire, impact, blade, arcane, electr
 
 var Item = function(name){
 	this.name = name;
+	this.row = Math.floor(Math.random()*6);
+	this.col = Math.floor(Math.random()*6);
 }
 
 var Door = function(x, y, width, height) {

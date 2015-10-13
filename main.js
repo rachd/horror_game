@@ -66,11 +66,17 @@ function drawCreature(room){
 	ctx.fillRect(100 + (50*room.creature.col), 100 + (50*room.creature.row), 50, 50);
 }
 
+function drawObject(room){
+	ctx.fillStyle = '#09F';
+	ctx.fillRect(100 + (50*room.item.col), 100 + (50*room.item.row), 50, 50);
+}
+
 function draw(room) {
 	ctx.clearRect(0, 0, c.width, c.height);
 	drawGrid();
 	drawDoors(room);
 	drawCreature(room);
+	drawObject(room);
 }
 
 /*
