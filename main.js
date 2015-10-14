@@ -306,6 +306,7 @@ $('#person').click(function(){
 	num_players = $('#people').val();
 	$('#person').hide();
 	$('form').hide();
+	$('.content').css('visibility', 'visible');
 	//Initialize Players
 	for (var i = 0; i < num_players; i++){
 		players[i] = new Player(room);
