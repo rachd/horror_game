@@ -302,10 +302,10 @@ displayCreature(room);
 Read form
 ==========
 */
-$('#person').click(function(){
+$('#personForm').submit(function(){
 	num_players = $('#people').val();
 	$('#person').hide();
-	$('form').hide();
+	$('#personForm').hide();
 	$('.content').css('visibility', 'visible');
 	//Initialize Players
 	for (var i = 0; i < num_players; i++){
